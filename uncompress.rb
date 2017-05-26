@@ -4,25 +4,31 @@ def input
     case ARGV[0] 
     when "-p" then 
         password = ARGV[1]
-        listOfFiles = convertAddress(ARGV[2])
+        listOfFiles = convertAddress(2)
         processFiles listOfFiles 
     else 
-        listOfFiles = convertAddress(ARGV[0])
+        listOfFiles = convertAddress(0)
         processFiles listOfFiles
     end 
 end 
 
-def convertAddress(address)
-    case address[0] 
-    when '/' then 
-        return [address]
-    when '.' then 
-        arr = Dir.entries(".")
-        arr.shift 
-        return arr.shift 
-    else 
-        pwd = File.basename(Dir.getwd)
-        return [pwd + address]
+def convertAddress(startIndex)
+    startIndex.times do 
+        ARGV.shift 
+    end 
+    
+    ARGV.each do |path| 
+        case path[0]
+        when '/' then 
+            return [address]
+        when '.' then 
+            arr = Dir.entries(".")
+            arr.shift 
+            return arr.shift 
+        else 
+            pwd = File.basename(Dir.getwd)
+            return [pwd + address]
+        end 
     end 
 end 
 
@@ -40,6 +46,4 @@ end
 def getFileName(path) 
 
 end 
-
-system("echo hi") 
 
