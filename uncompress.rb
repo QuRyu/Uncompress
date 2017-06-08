@@ -1,4 +1,4 @@
-regex = "/(*).rar"
+$regex = /.*\/(.*)\.rar/
 
 def input
     case ARGV[0] 
@@ -44,6 +44,7 @@ end
 # use regular expression to extract the 
 # file name from the path 
 def getFileName(path) 
-
+    return $regex.match(path)[1]
 end 
 
+puts(getFileName("/hello.rar"))
